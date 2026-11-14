@@ -5,7 +5,6 @@ import { gsap } from 'gsap'
 import { site } from '@/data/site'
 import { markReady, prefersReducedMotion } from '@/lib/ready'
 
-const SEEN_KEY = 'd4rk-loader-seen'
 const MIN_COUNT_MS = 1300
 
 // Waits for the real things the first screen needs: the photo, the fonts and the page.
@@ -38,12 +37,8 @@ export default function Loader() {
   const cover = useRef(null)
 
   useEffect(() => {
-    let seen = false
-    try {
-      seen = sessionStorage.getItem(SEEN_KEY) === '1'
-    } catch {}
-
-    if (seen || prefersReducedMotion()) {
+    // Plays on every page load, except for visitors who turn animations off.
+    if (prefersReducedMotion()) {
       setShow(false)
       markReady()
       return
@@ -99,9 +94,6 @@ export default function Loader() {
         .add(() => {
           markReady()
           document.documentElement.classList.remove('is-loading')
-          try {
-            sessionStorage.setItem(SEEN_KEY, '1')
-          } catch {}
         })
         .to(root.current, { opacity: 0, duration: 0.45, ease: 'power1.out' })
         .add(() => setShow(false))

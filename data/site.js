@@ -15,9 +15,9 @@ export const site = {
   ],
   role: 'Software engineering student at Ontario Tech University.',
   pitch: 'I build 3D websites and online stores.',
-  email: 'dilanthan.sounthararasa@ontariotechu.net',
-  linkedin: 'https://www.linkedin.com/in/dilanthan-sounthararasa',
-  github: 'https://github.com/dilanthandilan11-sketch',
+  email: 'dilanthan.sounthararasa@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/dilanthan-sounthararasa/',
+  github: 'https://github.com/dilanthan-dev',
   // Put your resume PDF in the "public" folder and set this to '/resume.pdf'.
   resume: '',
   timezone: 'America/Toronto',
