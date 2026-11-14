@@ -95,7 +95,11 @@ export default function Footer() {
 
       <div className="footer-row">
         <button type="button" className="footer-email" onClick={copy}>
-          <span>{site.email}</span>
+          <span>
+            {/* Lets a long address wrap after the @ instead of mid-word. */}
+            {site.email.split('@')[0]}@<wbr />
+            {site.email.split('@')[1]}
+          </span>
           <small>{copied ? 'Copied' : 'Click to copy'}</small>
         </button>
 

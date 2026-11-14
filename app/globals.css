@@ -345,7 +345,8 @@ button {
   transform: translateX(-50%);
   font-family: var(--f-display);
   font-weight: 900;
-  font-size: 12.2vw;
+  /* The name is about 7.5 times its font size wide, so this keeps it inside the side margins. */
+  font-size: min(12.2vw, calc((100vw - 2 * var(--gutter)) / 7.6));
   line-height: 0.85;
   letter-spacing: -0.045em;
   white-space: nowrap;
@@ -1170,7 +1171,6 @@ main {
   text-decoration: underline;
   text-decoration-color: var(--crimson);
   text-underline-offset: 0.25em;
-  word-break: break-all;
 }
 
 .footer-email small,
@@ -1267,8 +1267,7 @@ main {
   }
 
   .hero-first {
-    top: 15svh;
-    font-size: 14.6vw;
+    top: 27svh;
   }
 
   .hero-last {
