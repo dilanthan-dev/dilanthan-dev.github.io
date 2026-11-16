@@ -15,6 +15,7 @@ export default function Home() {
       <SmoothScroll />
       <Nav />
       <main>
+
         {/* The hero stays put while the About panel rises over it. */}
         <div className="stage">
           <Hero />

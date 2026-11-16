@@ -5,9 +5,14 @@ import '@fontsource-variable/geist-mono'
 import './globals.css'
 import { site } from '@/data/site'
 
+
 export const metadata = {
-  title: `${site.name} | Software engineering student`,
-  description: `${site.role} ${site.pitch}`,
+  openGraph: {
+    title: 'D4RK | Developer Portfolio',
+    description: 'Software Engineering student building digital experiences.',
+    images: ['/og-image.png'],
+    type: 'website',
+  },
 }
 
 export const viewport = {
