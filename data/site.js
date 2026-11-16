@@ -28,7 +28,7 @@ export const site = {
 export const facts = [
   { label: 'Name', value: 'Dilanthan Sounthararasa' },
   { label: 'Goes by', value: 'Dark' },
-  { label: 'Studying', value: 'Software Engineering (co-op), Ontario Tech University' },
+  { label: 'Studying', value: 'Software Engineering, Ontario Tech University' },
   { label: 'Status', value: 'Open to co-op placements' },
 ]
 
