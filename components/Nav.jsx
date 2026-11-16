@@ -5,7 +5,7 @@ import { scrollToTarget } from '@/lib/ready'
 const links = [
   { href: '#about', label: 'About' },
   { href: '#work', label: 'Work' },
-  { href: '#certificates', label: 'Certificates' },
+  // { href: '#certificates', label: 'Certificates' },
   { href: '#contact', label: 'Contact' },
 ]
 
