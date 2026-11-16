@@ -28,8 +28,8 @@ export const site = {
 export const facts = [
   { label: 'Name', value: 'Dilanthan Sounthararasa' },
   { label: 'Goes by', value: 'Dark' },
-  { label: 'Studying', value: 'Software Engineering (co-op), Ontario Tech University' },
-  { label: 'Status', value: 'Open to co-op placements' },
+  { label: 'Studying', value: 'Software Engineering, Ontario Tech University' },
+  { label: 'Status', value: 'Open to summer 2027 software engineering internships' },
 ]
 
 // The words that scroll along the angled seam.

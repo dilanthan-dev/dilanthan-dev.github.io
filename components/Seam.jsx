@@ -4,42 +4,67 @@ import { useEffect, useRef } from 'react'
 import { ticker } from '@/data/site'
 import { prefersReducedMotion } from '@/lib/ready'
 
+const SPEED = 45 // pixels per second at rest
+
 // The tilted strip on the diagonal between the light panel and the dark work section.
-// It drifts on its own and speeds up with the scroll.
+// It drifts on its own and speeds up while the page is scrolling.
 export default function Seam() {
   const track = useRef(null)
 
   useEffect(() => {
     if (prefersReducedMotion()) return
     const el = track.current
-    let x = 0
-    let raf = 0
-    let visible = false
-    let last = performance.now()
+    let anim = null
 
-    const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting
-      if (visible) {
-        last = performance.now()
-        raf = requestAnimationFrame(loop)
-      }
-    })
-    io.observe(el)
-
-    function loop(now) {
-      const dt = Math.min(64, now - last)
-      last = now
-      const v = Math.abs(window.__lenis?.velocity || 0)
-      x -= (0.045 + Math.min(v, 60) * 0.012) * dt
+    // The browser's own animation engine runs the drift, so it keeps going on every device.
+    const start = () => {
+      if (anim) anim.cancel()
       const half = el.scrollWidth / 2
-      if (-x >= half) x += half
-      el.style.transform = `translate3d(${x}px,0,0)`
-      if (visible) raf = requestAnimationFrame(loop)
+      anim = el.animate([{ transform: 'translate3d(0,0,0)' }, { transform: `translate3d(${-half}px,0,0)` }], {
+        duration: (half / SPEED) * 1000,
+        iterations: Infinity,
+      })
     }
+    start()
+    // Phones fire resize when the address bar hides, so restart only when the width changes.
+    let width = window.innerWidth
+    const onResize = () => {
+      if (window.innerWidth === width) return
+      width = window.innerWidth
+      start()
+    }
+    window.addEventListener('resize', onResize)
+
+    // Scrolling speeds the strip up, then it eases back to its resting pace.
+    let lastY = window.scrollY
+    let lastT = performance.now()
+    let boost = 1
+    let raf = 0
+    const settle = () => {
+      boost += (1 - boost) * 0.06
+      if (anim) anim.playbackRate = boost
+      if (boost > 1.01) raf = requestAnimationFrame(settle)
+      else {
+        boost = 1
+        if (anim) anim.playbackRate = 1
+        raf = 0
+      }
+    }
+    const onScroll = () => {
+      const now = performance.now()
+      const v = Math.abs(window.scrollY - lastY) / Math.max(1, now - lastT) // px per ms
+      lastY = window.scrollY
+      lastT = now
+      boost = Math.max(boost, 1 + Math.min(v, 6) * 1.5)
+      if (!raf) raf = requestAnimationFrame(settle)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
-      io.disconnect()
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', onScroll)
       cancelAnimationFrame(raf)
+      if (anim) anim.cancel()
     }
   }, [])
 

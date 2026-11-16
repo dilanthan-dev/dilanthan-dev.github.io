@@ -84,7 +84,7 @@ export default function Footer() {
     <>
     <footer className="footer" id="contact" ref={ref}>
       <div className="footer-glow" aria-hidden="true" />
-      <p className="footer-kicker">Open to co-op placements</p>
+      <p className="footer-kicker">Open for internships</p>
       <h2 className="footer-headline">
         <span>Got a</span>
         <span>project?</span>

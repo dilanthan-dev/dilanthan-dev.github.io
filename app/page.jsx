@@ -22,7 +22,7 @@ export default function Home() {
         </div>
         <Seam />
         <Work />
-        <Certificates />
+        {/*<Certificates />*/}
       </main>
       <Footer />
     </>
