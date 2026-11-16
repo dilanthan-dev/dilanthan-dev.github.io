@@ -28,7 +28,7 @@ export default function About() {
             {facts.map((f) => (
               <div key={f.label}>
                 <dt>{f.label}</dt>
-                
+                <dd>{f.value}</dd>
               </div>
             ))}
           </dl>
