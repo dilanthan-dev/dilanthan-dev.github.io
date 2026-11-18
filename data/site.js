@@ -56,7 +56,7 @@ export const projects = [
     links: [{ label: 'Visit aurainfotech.ca', href: 'https://aurainfotech.ca' }],
     art: 'aura',
     hue: '#63d6c6',
-    image: '',
+    image: '/aurainfotech.png',
   },
   {
     id: 'genz-electronics',
@@ -75,7 +75,7 @@ export const projects = [
     links: [{ label: 'Visit genzelectronics.ca', href: 'https://genzelectronics.ca' }],
     art: 'genz',
     hue: '#ff8f52',
-    image: '',
+    image: '/genzelectronics.png',
   },
   {
     id: 'devtrack',
